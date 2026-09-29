@@ -1,0 +1,10 @@
+*.stl.bak
+__pycache__/
+.DS_Store
+*.gcode
+*.3mf
+
+# KiCad local editor state (not a build artifact)
+*.kicad_prl
+*-backups/
+*.kicad_pcb-bak

@@ -1,0 +1,47 @@
+# KiCad custom design rules — SX-70 lens/shutter flex
+# Load via Board Setup -> Custom Rules.
+#
+# UNVERIFIED: written without KiCad available to validate against. If the
+# syntax is off, Board Setup shows a parse error pointing at the line — fix
+# and reload. Nothing else in the project depends on this file.
+#
+# The bend-zone rules require a Rule Area (keepout) named exactly "BendZone"
+# drawn over each folding region. Without those areas the bend rules simply
+# never trigger.
+
+(version 1)
+
+(rule "min_track_general"
+	(constraint track_width (min 0.15mm))
+	(layer outer))
+
+(rule "min_clearance_general"
+	(constraint clearance (min 0.15mm))
+	(layer outer))
+
+# Motor and solenoid current — wider than signal traces.
+# Apply by putting these nets in a net class named "Power".
+(rule "min_track_power"
+	(constraint track_width (min 0.20mm))
+	(condition "A.NetClass == 'Power'"))
+
+# --- Bend zones -------------------------------------------------------
+# Vias and plated holes in a bend zone are the single most reliable way to
+# crack a flex.
+
+(rule "no_vias_in_bend"
+	(constraint disallow via)
+	(condition "A.insideArea('BendZone')"))
+
+(rule "no_pads_in_bend"
+	(constraint disallow pad)
+	(condition "A.insideArea('BendZone')"))
+
+(rule "min_track_in_bend"
+	(constraint track_width (min 0.20mm))
+	(condition "A.insideArea('BendZone')"))
+
+# Keep copper away from the profiled edge — flex outlines are cut, not routed,
+# and the cut wanders more than a rigid board's.
+(rule "copper_to_edge"
+	(constraint edge_clearance (min 0.30mm)))

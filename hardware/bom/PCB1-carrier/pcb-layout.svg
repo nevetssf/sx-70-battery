@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="686" viewBox="0 0 860 686" font-family="ui-sans-serif,system-ui,sans-serif">
+<style>.t{font-size:9px;fill:#111}.s{font-size:7px;fill:#555}.ttl{font-size:16px;font-weight:600;fill:#111}.pcb{fill:#1f6f43;fill-opacity:.10;stroke:#1f6f43;stroke-width:2}.mod{fill:#e7d9f5;stroke:#7a4fd0;stroke-width:1.2}.ic{fill:#ffd9d9;stroke:#c0392b;stroke-width:1.2}.pwr{fill:#ffeccc;stroke:#c98a1a;stroke-width:1}.conn{fill:#d6ecff;stroke:#2c7bb6;stroke-width:1}.sig{fill:#e4e4e4;stroke:#777;stroke-width:.8}.pogo{fill:#fff2b8;stroke:#b8860b;stroke-width:1.4}</style>
+<rect width="860" height="686" fill="#fff"/>
+<text x="70.0" y="28" class="ttl">PCB1 carrier — plan view, component side</text>
+<text x="70.0" y="46" class="s">80 x 44 mm · L-shape · 1 mm = 9 px · origin bottom-left · pogo pins mount on the UNDERSIDE</text>
+<polygon points="70.0,466.0 790.0,466.0 790.0,70.0 457.0,70.0 457.0,376.0 70.0,376.0" class="pcb"/>
+<line x1="70.0" y1="376.0" x2="790.0" y2="376.0" stroke="#1f6f43" stroke-width=".8" stroke-dasharray="5 3"/>
+<text x="79.0" y="389.0" class="s" fill="#1f6f43">lane — pogo pins + output path, no tall parts</text>
+<circle cx="97.0" cy="439.0" r="9.9" fill="#fff" stroke="#333" stroke-width="1.2"/>
+<circle cx="763.0" cy="439.0" r="9.9" fill="#fff" stroke="#333" stroke-width="1.2"/>
+<circle cx="479.5" cy="92.5" r="9.9" fill="#fff" stroke="#333" stroke-width="1.2"/>
+<circle cx="763.0" cy="92.5" r="9.9" fill="#fff" stroke="#333" stroke-width="1.2"/>
+<circle cx="529.0" cy="349.0" r="9.9" fill="#fff" stroke="#7a4fd0" stroke-width="1" stroke-dasharray="2 2"/>
+<circle cx="772.0" cy="349.0" r="9.9" fill="#fff" stroke="#7a4fd0" stroke-width="1" stroke-dasharray="2 2"/>
+<circle cx="529.0" cy="223.0" r="9.9" fill="#fff" stroke="#7a4fd0" stroke-width="1" stroke-dasharray="2 2"/>
+<circle cx="772.0" cy="223.0" r="9.9" fill="#fff" stroke="#7a4fd0" stroke-width="1" stroke-dasharray="2 2"/>
+<circle cx="232.0" cy="403.0" r="9.5" class="pogo"/>
+<text x="232.0" y="389.6" class="s" text-anchor="middle">P1a</text>
+<circle cx="682.0" cy="403.0" r="9.5" class="pogo"/>
+<text x="682.0" y="389.6" class="s" text-anchor="middle">P1b</text>
+<rect x="115.0" y="385.0" width="99.0" height="54.0" class="conn" rx="2"/>
+<text x="164.5" y="411.0" class="t" text-anchor="middle">J3</text>
+<text x="164.5" y="421.0" class="s" text-anchor="middle">balance XH-3</text>
+<rect x="259.0" y="428.2" width="63.0" height="36.0" class="conn" rx="2"/>
+<text x="290.5" y="424.2" class="s" text-anchor="middle">SW1</text>
+<rect x="259.0" y="377.8" width="72.0" height="45.0" class="conn" rx="2"/>
+<text x="295.0" y="399.3" class="t" text-anchor="middle">J2</text>
+<text x="295.0" y="409.3" class="s" text-anchor="middle">pack XH-2</text>
+<rect x="331.0" y="385.0" width="72.0" height="72.0" class="pwr" rx="2"/>
+<text x="367.0" y="420.0" class="t" text-anchor="middle">C1a</text>
+<text x="367.0" y="430.0" class="s" text-anchor="middle">220u</text>
+<rect x="412.0" y="385.0" width="72.0" height="72.0" class="pwr" rx="2"/>
+<text x="448.0" y="420.0" class="t" text-anchor="middle">C1b</text>
+<text x="448.0" y="430.0" class="s" text-anchor="middle">220u</text>
+<rect x="488.5" y="407.5" width="45.0" height="27.0" class="pwr" rx="2"/>
+<text x="511.0" y="403.5" class="s" text-anchor="middle">D1</text>
+<rect x="547.0" y="407.5" width="54.0" height="27.0" class="pwr" rx="2"/>
+<text x="574.0" y="403.5" class="s" text-anchor="middle">R1</text>
+<rect x="603.2" y="406.6" width="40.5" height="28.8" class="pwr" rx="2"/>
+<text x="623.5" y="402.6" class="s" text-anchor="middle">F1</text>
+<rect x="700.0" y="398.5" width="90.0" height="27.0" class="conn" rx="2"/>
+<text x="745.0" y="394.5" class="s" text-anchor="middle">J4</text>
+<rect x="511.0" y="205.0" width="279.0" height="162.0" class="mod" rx="2"/>
+<text x="650.5" y="285.0" class="t" text-anchor="middle">U2</text>
+<text x="650.5" y="295.0" class="s" text-anchor="middle">IP2326 module</text>
+<rect x="479.5" y="130.8" width="27.0" height="22.5" class="ic" rx="2"/>
+<text x="493.0" y="126.8" class="s" text-anchor="middle">U3</text>
+<rect x="520.0" y="124.0" width="36.0" height="36.0" class="pwr" rx="2"/>
+<text x="538.0" y="120.0" class="s" text-anchor="middle">L1</text>
+<rect x="562.8" y="160.0" width="58.5" height="18.0" class="pwr" rx="2"/>
+<text x="592.0" y="156.0" class="s" text-anchor="middle">Cout</text>
+<rect x="490.8" y="97.0" width="40.5" height="18.0" class="pwr" rx="2"/>
+<text x="511.0" y="93.0" class="s" text-anchor="middle">Cin</text>
+<rect x="484.0" y="175.8" width="36.0" height="13.5" class="sig" rx="2"/>
+<text x="502.0" y="171.8" class="s" text-anchor="middle">R2/R3</text>
+<rect x="560.5" y="92.5" width="27.0" height="27.0" class="sig" rx="2"/>
+<text x="574.0" y="88.5" class="s" text-anchor="middle">Q1</text>
+<rect x="610.0" y="99.2" width="36.0" height="13.5" class="sig" rx="2"/>
+<text x="628.0" y="95.2" class="s" text-anchor="middle">R4/R5</text>
+<rect x="673.0" y="99.2" width="36.0" height="13.5" class="sig" rx="2"/>
+<text x="691.0" y="95.2" class="s" text-anchor="middle">R6/R7</text>
+<rect x="70.0" y="491.0" width="13" height="13" fill="#e7d9f5" stroke="#555" stroke-width=".8"/>
+<text x="89.0" y="501.0" class="s">module (U2, on standoffs)</text>
+<rect x="320.0" y="491.0" width="13" height="13" fill="#ffd9d9" stroke="#555" stroke-width=".8"/>
+<text x="339.0" y="501.0" class="s">regulator IC</text>
+<rect x="570.0" y="491.0" width="13" height="13" fill="#ffeccc" stroke="#555" stroke-width=".8"/>
+<text x="589.0" y="501.0" class="s">power path</text>
+<rect x="70.0" y="511.0" width="13" height="13" fill="#d6ecff" stroke="#555" stroke-width=".8"/>
+<text x="89.0" y="521.0" class="s">connector / switch</text>
+<rect x="320.0" y="511.0" width="13" height="13" fill="#e4e4e4" stroke="#555" stroke-width=".8"/>
+<text x="339.0" y="521.0" class="s">signal</text>
+<rect x="570.0" y="511.0" width="13" height="13" fill="#fff2b8" stroke="#555" stroke-width=".8"/>
+<text x="589.0" y="521.0" class="s">pogo pin (underside)</text>
+<text x="70.0" y="552" class="s">J2 pack power (XH-2) from U1 protection board P+/P-   ·   J3 balance (XH-3), midpoint to U2 BM</text>
+<text x="70.0" y="567" class="s">J4 links the IP2326 module: VIN+, GND, B+, B-, BM   ·   solid circles = M2 board holes, dashed = U2 module holes</text>
+<text x="70.0" y="582" class="s">SW1 sits in series with the R6/R7 top leg, so switching off also removes the 9.3 uA divider draw</text>
+<text x="70.0" y="597" class="s">Q1 pulls EN low whenever VBUS is present - cannot charge and shoot at once</text>
+</svg>

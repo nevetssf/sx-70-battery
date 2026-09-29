@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="550" height="500" viewBox="0 0 550 500" font-family="ui-sans-serif,system-ui,sans-serif">
+<style>.lbl{font-size:9px;fill:#1a1a1a}.sm{font-size:7.5px;fill:#555}.ttl{font-size:15px;font-weight:600;fill:#111}.dim{font-size:8px;fill:#777}.shell{fill:#f4f2ee;stroke:#333;stroke-width:1.5}.cav{fill:#fff;stroke:#999;stroke-width:1}.div{fill:#ddd8cf;stroke:#666;stroke-width:.8}.boss{fill:#e8dcc0;stroke:#9a8748;stroke-width:.8}.mag{fill:#cfe0f0;stroke:#4a7ea8;stroke-width:.8}.pogo{fill:#ffe0a8;stroke:#c98a1a;stroke-width:.9}.comp{fill:#e9f3e5;stroke:#4a8a3a;stroke-width:1;fill-opacity:.75}.bad{fill:#ffdede;stroke:#c0392b;stroke-width:1.6;fill-opacity:.8}.cut{fill:#c0392b;stroke:none;fill-opacity:.85}</style>
+<rect width="550" height="500" fill="#fff"/>
+<text x="60.0" y="26" class="ttl">SX-70 power pack — top-down layout, option "lipo"</text>
+<text x="60.0" y="42" class="sm">Outer 86.0 x 50.0 x 17.7 mm  ·  clear height above bosses 13.0 mm  ·  1 mm = 5 px  ·  lid removed, looking down</text>
+<rect x="60.0" y="60.0" width="430.0" height="250.0" rx="15.0" class="shell"/>
+<rect x="70.0" y="70.0" width="410.0" height="230.0" class="cav"/>
+<rect x="250.0" y="70.0" width="6.0" height="230.0" class="div"/>
+<circle cx="83.0" cy="83.0" r="16.0" class="boss"/>
+<circle cx="83.0" cy="83.0" r="8.5" fill="#fff" stroke="#9a7" stroke-width=".6"/>
+<circle cx="467.0" cy="83.0" r="16.0" class="boss"/>
+<circle cx="467.0" cy="83.0" r="8.5" fill="#fff" stroke="#9a7" stroke-width=".6"/>
+<circle cx="83.0" cy="287.0" r="16.0" class="boss"/>
+<circle cx="83.0" cy="287.0" r="8.5" fill="#fff" stroke="#9a7" stroke-width=".6"/>
+<circle cx="467.0" cy="287.0" r="16.0" class="boss"/>
+<circle cx="467.0" cy="287.0" r="8.5" fill="#fff" stroke="#9a7" stroke-width=".6"/>
+<circle cx="167.5" cy="100.8" r="25.8" class="mag"/>
+<circle cx="167.5" cy="100.8" r="15.8" fill="none" stroke="#2c5d80" stroke-width="1" stroke-dasharray="3 2"/>
+<circle cx="382.5" cy="100.8" r="25.8" class="mag"/>
+<circle cx="382.5" cy="100.8" r="15.8" fill="none" stroke="#2c5d80" stroke-width="1" stroke-dasharray="3 2"/>
+<circle cx="167.5" cy="269.2" r="25.8" class="mag"/>
+<circle cx="167.5" cy="269.2" r="15.8" fill="none" stroke="#2c5d80" stroke-width="1" stroke-dasharray="3 2"/>
+<circle cx="382.5" cy="269.2" r="25.8" class="mag"/>
+<circle cx="382.5" cy="269.2" r="15.8" fill="none" stroke="#2c5d80" stroke-width="1" stroke-dasharray="3 2"/>
+<circle cx="150.0" cy="110.0" r="17.8" class="pogo"/>
+<circle cx="150.0" cy="110.0" r="5.2" fill="#fff" stroke="#c98a1a" stroke-width="1"/>
+<text x="150.0" y="89.2" class="sm" text-anchor="middle">pogo</text>
+<circle cx="400.0" cy="110.0" r="17.8" class="pogo"/>
+<circle cx="400.0" cy="110.0" r="5.2" fill="#fff" stroke="#c98a1a" stroke-width="1"/>
+<text x="400.0" y="89.2" class="sm" text-anchor="middle">pogo</text>
+<rect x="480.0" y="91.0" width="10.0" height="48.0" class="cut"/>
+<text x="496.0" y="115.0" class="sm">USB-C</text>
+<rect x="337.2" y="60.0" width="37.5" height="10.0" class="cut"/>
+<text x="356.0" y="55.0" class="sm" text-anchor="middle">switch</text>
+<rect x="80.0" y="130.0" width="175.0" height="130.0" class="comp" rx="2"/>
+<text x="167.5" y="195.0" class="lbl" text-anchor="middle">LiPo 2S 350mAh</text>
+<text x="167.5" y="206.0" class="sm" text-anchor="middle">35 x 26 mm</text>
+<text x="167.5" y="216.0" class="sm" text-anchor="middle">on case floor, beside PCB</text>
+<rect x="320.0" y="130.0" width="155.0" height="90.0" class="comp" rx="2"/>
+<text x="397.5" y="175.0" class="lbl" text-anchor="middle">IP2326</text>
+<text x="397.5" y="186.0" class="sm" text-anchor="middle">31 x 18 mm</text>
+<text x="397.5" y="196.0" class="sm" text-anchor="middle">USB-C to +x wall</text>
+<rect x="300.0" y="230.0" width="75.0" height="60.0" class="comp" rx="2"/>
+<text x="337.5" y="260.0" class="lbl" text-anchor="middle">TPS63070 block</text>
+<text x="337.5" y="271.0" class="sm" text-anchor="middle">15 x 12 mm</text>
+<text x="337.5" y="281.0" class="sm" text-anchor="middle">QFN + L + caps</text>
+<rect x="235.0" y="75.0" width="50.0" height="50.0" class="comp" rx="2"/>
+<text x="260.0" y="100.0" class="lbl" text-anchor="middle">C1</text>
+<text x="260.0" y="111.0" class="sm" text-anchor="middle">10 x 10 mm</text>
+<text x="260.0" y="121.0" class="sm" text-anchor="middle">close to pins</text>
+<rect x="297.5" y="92.5" width="25.0" height="15.0" class="comp" rx="2"/>
+<text x="310.0" y="100.0" class="lbl" text-anchor="middle">D1</text>
+<text x="310.0" y="111.0" class="sm" text-anchor="middle">5 x 3 mm</text>
+<rect x="335.0" y="92.5" width="30.0" height="15.0" class="comp" rx="2"/>
+<text x="350.0" y="100.0" class="lbl" text-anchor="middle">R1</text>
+<text x="350.0" y="111.0" class="sm" text-anchor="middle">6 x 3 mm</text>
+<rect x="180.0" y="75.0" width="35.0" height="20.0" class="comp" rx="2"/>
+<text x="197.5" y="85.0" class="lbl" text-anchor="middle">SW1</text>
+<text x="197.5" y="96.0" class="sm" text-anchor="middle">7 x 4 mm</text>
+<text x="197.5" y="106.0" class="sm" text-anchor="middle">actuator to -y wall</text>
+<rect x="180.0" y="95.0" width="40.0" height="30.0" class="comp" rx="2"/>
+<text x="200.0" y="110.0" class="lbl" text-anchor="middle">J2 pack</text>
+<text x="200.0" y="121.0" class="sm" text-anchor="middle">8 x 6 mm</text>
+<text x="200.0" y="131.0" class="sm" text-anchor="middle">XH 2-pin, 3 A</text>
+<rect x="102.5" y="85.0" width="55.0" height="30.0" class="comp" rx="2"/>
+<text x="130.0" y="100.0" class="lbl" text-anchor="middle">J3 bal</text>
+<text x="130.0" y="111.0" class="sm" text-anchor="middle">11 x 6 mm</text>
+<text x="130.0" y="121.0" class="sm" text-anchor="middle">XH 3-pin</text>
+<polygon points="75.0,75.0 475.0,75.0 475.0,295.0 290.0,295.0 290.0,125.0 75.0,125.0" fill="none" stroke="#7a4fd0" stroke-width="2" stroke-dasharray="6 3"/>
+<text x="81.0" y="120.0" class="sm" fill="#7a4fd0">PCB1 outline (L) — tongue carries the far pogo pin</text>
+<rect x="60.0" y="327.0" width="13" height="13" fill="#e8dcc0" stroke="#555" stroke-width=".8"/>
+<text x="79.0" y="337.0" class="sm">lid-screw boss + M2.5 insert</text>
+<rect x="290.0" y="327.0" width="13" height="13" fill="#cfe0f0" stroke="#555" stroke-width=".8"/>
+<text x="309.0" y="337.0" class="sm">magnet pad (pocket dashed)</text>
+<rect x="520.0" y="327.0" width="13" height="13" fill="#ffe0a8" stroke="#555" stroke-width=".8"/>
+<text x="539.0" y="337.0" class="sm">pogo boss + bore</text>
+<rect x="60.0" y="347.0" width="13" height="13" fill="#e9f3e5" stroke="#555" stroke-width=".8"/>
+<text x="79.0" y="357.0" class="sm">component, clear</text>
+<rect x="290.0" y="347.0" width="13" height="13" fill="#ffdede" stroke="#555" stroke-width=".8"/>
+<text x="309.0" y="357.0" class="sm">component, COLLIDES</text>
+<rect x="520.0" y="347.0" width="13" height="13" fill="#c0392b" stroke="#555" stroke-width=".8"/>
+<text x="539.0" y="357.0" class="sm">wall cutout</text>
+<text x="60.0" y="388" class="sm">Pogo protrusion 1.1 mm vs 0.7 mm stroke  ·  component positions are a PROPOSAL, not defined in the SCAD</text>
+</svg>

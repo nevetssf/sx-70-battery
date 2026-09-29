@@ -1,0 +1,27 @@
+ref,qty,part,spec,supplier,link,notes
+B1,1,Gens Ace 350mAh 2S 30C LiPo,35 x 26 x 10 mm GEA3502S30JST,HobbyEtc,https://store.hobbyetc.com/parts/view/186378,Balance lead gives cell midpoint
+U1,1,2S protection board,DW01/8205-class; overcurrent >= 5 A,generic,,Backup to the regulator LVC
+U2,1,IP2326 2S USB-C charger module Z-6732-V4.0 purple,2S variant; 31 x 18 mm; BM broken out; ISET/NTC/ROV silkscreened; 4 corner mounting holes,AliExpress,,~$2.20/ea at 10 off. MUST be the 2S variant - select by the 2S/3S dropdown NOT by colour; the 3S board (LX-LSC-V2) also has a BM pad but the chip does no balancing in 3S. CHARGER ONLY - no P+/P- pads so U1 is still required. Do NOT bridge ROV. ISET floor ~0.5 A
+U3,1,TPS630702 buck-boost (PREFERRED),adjustable + output discharge; 2-16 V in; 2.5-9 V out; 2 A; QFN 2.5x3,LCSC,https://www.lcsc.com/product-detail/C109322.html,TPS63070 also works (no output discharge). NOT TPS630701 - fixed 5 V. Set 6 V with R1=649k R2=100k vs 0.8 V ref. Load disconnect confirmed; 2 uA shutdown. Check measured motor peak against 2 A
+R2-R3,2,Feedback divider 1% E96,649k and 100k,generic,,Sets TPS630702 output to 5.99 V; 8 uA divider current
+Q1,1,N-channel MOSFET small signal,2N7002 or eq SOT-23,generic,,USB-present interlock: pulls EN low while charging
+R4-R5,2,Interlock divider,100k and 100k,generic,,VIN+ from charger module to Q1 gate
+R6-R7,2,EN undervoltage divider 1% E96,698k and 100k,generic,,Soft LVC ~6.4 V using the precise EN threshold; SW1 in series with the top leg
+U3-alt,1,Pololu D30V33MALCMA,1.4-7 V out 3.8 A; adjustable LVC; 0.9 x 1.2 in,Pololu,https://www.pololu.com/product/4852,~$35. LVC is largely redundant with U1. Step-down so output sags near pack cutoff
+C1,2,Capacitor,220 uF 10 V low-ESR polymer (440 uF total),generic,,Regulator output before D1/R1. TPS63070 caps VOUT capacitance at 470 uF - 1000 uF is NOT allowed
+L1,1,Inductor,1.5 uH shielded (Coilcraft XFL4020-152ME or eq),Coilcraft,,TPS63070 power inductor
+CIN,2,Capacitor,10 uF 25 V X7S 0805,generic,,TPS63070 input
+COUT,3,Capacitor,22 uF 16 V X6S 0805,generic,,TPS63070 local output
+D1,1,Schottky diode,SS34 3 A 40 V DO-214AB,generic,,Blocks film-pack battery backfeed; omit if P-FET used
+R1,1,Power resistor,0.22-0.47 ohm 1 W,generic,,Value set by shunt data; subtract F1 and pogo pin resistance
+F1,1,Resettable fuse PPTC 1812,Littelfuse 1812L075; 0.75 A hold / 1.5 A trip,Littelfuse,https://www.littelfuse.com/products/fuses-overcurrent-protection/polyswitch-resettable-pptc-devices/surface-mount-polyswitch-resettable-pptc-devices/1812l/1812l075,In the output path. Ends a sustained backfeed into a film-pack battery. NOT 1812L110 - its 2.2 A trip is above our 2.0 A fault
+SW1,1,Slide switch SPDT,SS12D00-class,generic,,Pulls regulator EN low for off
+P1,2,Mill-Max spring-loaded pin through-hole,7982-1-15-20-75-14-11-0; 8 A; 20 mOhm; 0.7 mm stroke; 60 g; 2.1 mm dia,Mill-Max,https://www.digikey.com/en/product-highlight/m/millmax/high-current-small-scale-spring-loaded-pins,Soldertail into PCB1; spacing must be measured; PCB standoff 2.6 mm sets protrusion
+PCB1,1,Carrier PCB 2-layer,carries P1 C1 D1 R1 SW1 J2 J3 + modules,PCBWay,,L-shaped; see docs/pcb.md
+J2,1,JST-XH 2-pin header + crimp housing,3 A rating,generic,,Pack power from protection board P+/P-
+J3,1,JST-XH 3-pin header + crimp housing,,generic,,Balance tap; midpoint to IP2326 BM; keep reachable
+-,4,M2.5 brass heat-set insert,3.5 mm OD x 4 mm,generic,,Lid fixing; measure OD/length and set insert_d/insert_l
+-,4,M2.5 x 8 mm countersunk machine screw,,generic,,Lid
+-,4,Neodymium disc magnet,6 x 2 mm N52,generic,,Epoxied into base pockets; polarity irrelevant vs steel shim
+-,1,Steel shim,0.3-0.5 mm ferrous (not stainless),generic,,Camera side; bond with 3M VHB
+-,1,Slow-cure epoxy,,generic,,Magnet bonding; not CA (brittle in shear)

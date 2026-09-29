@@ -1,0 +1,14 @@
+ref,qty,part,spec,supplier,link,notes
+B1,4,XTAR AAA 1.5V Li-ion,1620mWh / 1000mAh regulated 1.5V,XTAR,https://www.xtar.cc/product/xtar-aaa-lithium-1620mwh-battery.html,2A max per cell — gating spec; series string = 6.0V flat
+H1,1,4-cell AAA battery holder,~46 x 46 x 12 mm,generic,,Choose one with solder tabs
+C1,1,Electrolytic/polymer capacitor,1000 uF 10 V low-ESR,generic,,Across the string output
+R1,1,Power resistor,0.22-0.47 ohm 1 W,generic,,PolaPulse source-impedance emulation; value set by shunt data
+SW1,1,Slide switch SPDT,SS12D00-class,generic,,In the positive line
+P1,2,Mill-Max spring-loaded pin through-hole,7982-1-15-20-75-14-11-0; 8 A; 20 mOhm; 0.7 mm stroke; 60 g; 2.1 mm dia,Mill-Max,https://www.digikey.com/en/product-highlight/m/millmax/high-current-small-scale-spring-loaded-pins,Soldertail into PCB1; spacing must be measured; PCB standoff 2.6 mm sets protrusion
+PCB1,1,Carrier PCB 2-layer,carries P1 C1 R1 SW1,PCBWay,,Simplified version of the Option B board
+-,1,Charger for 1.5V Li-ion AAA,XTAR mix charger or equivalent,XTAR,,Cells charge off-camera
+-,4,M2.5 brass heat-set insert,3.5 mm OD x 4 mm,generic,,Lid fixing; measure OD/length and set insert_d/insert_l
+-,4,M2.5 x 8 mm countersunk machine screw,,generic,,Lid
+-,4,Neodymium disc magnet,6 x 2 mm N52,generic,,Epoxied into base pockets; polarity irrelevant vs steel shim
+-,1,Steel shim,0.3-0.5 mm ferrous (not stainless),generic,,Camera side; bond with 3M VHB
+-,1,Slow-cure epoxy,,generic,,Magnet bonding; not CA (brittle in shear)
