@@ -2,11 +2,11 @@
 
 Rechargeable external supply for the folding SX-70, replacing the PolaPulse battery when shooting battery-less film (i-Type) or dead packs.
 
-Two architectures are carried in parallel until the bench measurements in [testing.md](testing.md) settle the choice. **Option A** (4× regulated 1.5 V AAA, no converter) is simpler and wins if the motor's peak draw stays under ~1.8 A. **Option B** (2S LiPo + USB-C charger + adjustable buck) is the fallback and is detailed first below.
+Two architectures are carried in parallel until the bench measurements in [testing.md](testing.md) settle the choice. **Option A** (4× regulated 1.5 V AAA, no converter) is simpler and wins if the motor's peak draw stays under ~1.8 A. **Option B** (2S LiPo + USB-C charger + buck-boost regulator) is the fallback and is detailed first below.
 
 Camera batteries were ruled out early: no bare NP-FW50 socket is sold anywhere — only dummy batteries, which are the wrong gender — and the NP-F holders that do exist are ~89 × 96 mm.
 
-**Envelope:** Option B **86 × 50 × 17.7 mm** — 9 mm inside the 95 mm camera-bottom limit, after the TPS63070 replaced the Pololu module. Option A ~77 × 52 × 18.7 mm. Height is now set by the PCB stack (floor + 2.6 mm standoff + board + C1), not by internal bosses. Layout drawings: [layout-top-lipo.svg](../hardware/enclosure/layout-top-lipo.svg), [layout-top-aaa4.svg](../hardware/enclosure/layout-top-aaa4.svg).
+**Envelope:** Option B **86 × 50 × 17.7 mm** — 9 mm inside the 95 mm camera-bottom limit, after the TPS63070 replaced the Pololu module. Option A ~77 × 52 × 18.7 mm. Height is now set by the PCB stack (floor + 2.6 mm standoff + board + tallest part), not by internal bosses. Layout drawings: [layout-top-lipo.svg](../hardware/enclosure/layout-top-lipo.svg), [layout-top-aaa4.svg](../hardware/enclosure/layout-top-aaa4.svg).
 
 ---
 
@@ -39,12 +39,14 @@ flowchart LR
   CHG -- "B+ / B−" --> BMS
   CHG -. "BM (midpoint)" .-> CELLS
   CELLS[2S LiPo 350 mAh] --> BMS[2S protection board]
-  BMS -- "P+ / P−" --> REG[Pololu D30V33MALCMA fine-adjust buck]
-  SW[Slide switch] -- "EN to GND = off" --> REG
-  REG --> C[1000 µF low-ESR]
+  BMS -- "P+ / P−" --> REG[TPS630702 buck-boost, 6 V]
+  SW[Slide switch] -- "EN via R6/R7 divider" --> REG
+  USB -. "VBUS → Q1 pulls EN low" .-> REG
+  REG --> C[2 × 220 µF polymer]
   C --> D[SS34 Schottky]
   D --> R[0.22 Ω 1 W]
-  R --> P[2x pogo pins]
+  R --> F[1812L075 PPTC]
+  F --> P[2x pogo pins]
   P --> CAM[SX-70 base-plate contacts]
 ```
 
@@ -57,13 +59,15 @@ flowchart LR
 | B1 | [Gens Ace 350 mAh 2S 30C LiPo (GEA3502S30JST)](https://store.hobbyetc.com/parts/view/186378) | 35 × 26 × 10 mm, 17 g. Use the balance lead for the midpoint. |
 | U1 | 2S protection board (DW01/8205-class or similar) | Overdischarge ~2.8–3.0 V/cell, overcurrent ≥ 5 A. Rides on top of the pouch with Kapton between. |
 | U2 | IP2326 2S USB-C boost charger module ([example listing](https://sigmanortec.ro/en/lithium-2s-3s-charging-module-with-balancing-type-c-voltage-booster), [IP2326 datasheet](https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304062030_INJOINIC-IP2326_C2832094.pdf)) | ~31 × 15 mm. **Reduce charge current**, see below. |
-| U3 | [Pololu D30V33MALCMA, 1.4–7 V 3.8 A fine-adjust w/ low-voltage cutoff](https://www.pololu.com/product/4852) | 11-turn output pot and 11-turn LVC pot; set LVC ~6.4 V (3.2 V/cell). 0.9″ × 1.2″. Check stock — the family was backorder-only. |
-| C1 | 1000 µF 10 V low-ESR (polymer preferred) | On regulator output, *before* D1/R1. |
+| U3 | [TPS630702 buck-boost, 2–16 V in, 2.5–9 V / 2 A out](https://www.lcsc.com/product-detail/C109322.html) | QFN on the carrier PCB, with L1 1.5 µH, Cin 2 × 10 µF, Cout 3 × 22 µF. Output set to 5.99 V by R2/R3 = 649 k / 100 k. See [Regulator](#regulator--tps630702-replaced-the-pololu) |
+| U3-alt | [Pololu D30V33MALCMA, 1.4–7 V 3.8 A fine-adjust w/ low-voltage cutoff](https://www.pololu.com/product/4852) | Fallback only. ~$35, step-down, 0.9″ × 1.2″. Check stock — the family was backorder-only. |
+| C1a, C1b | 220 µF 10 V low-ESR polymer (440 µF total) | On regulator output, *before* D1/R1. The TPS630702 allows 470 µF max on VOUT, so 1000 µF is out. |
+| F1 | Littelfuse 1812L075 PPTC | After R1. Ends a sustained force-charge fault — see [Choosing the PTC](#choosing-the-ptc--the-obvious-part-is-the-wrong-one) |
 | D1 | SS34 (3 A 40 V Schottky) | Blocks backfeed from a film-pack battery. |
 | R1 | 0.22 Ω 1 W | PolaPulse impedance emulation; tune after shunt measurements. |
 | SW1 | SS12D00 SPDT slide switch | Pulls EN low for off. |
 | P1 | [Mill-Max 7982-1-15-20-75-14-11-0](https://www.digikey.com/en/product-highlight/m/millmax/high-current-small-scale-spring-loaded-pins) spring-loaded pin, through-hole (×2) | 8 A (6.4 A derated), 20 mΩ max, 0.7 mm stroke, 60 g mid-stroke, 2.1 mm body, gold throughout. ~$1.55 ea at Digi-Key. Soldertail into the carrier PCB |
-| PCB1 | Carrier PCB, 2-layer | Carries P1, C1, D1, R1, SW1, J2, J3 and the two modules. See [Carrier PCB](#carrier-pcb) |
+| PCB1 | Carrier PCB, 2-layer | Carries P1, C1a/C1b, D1, R1, F1, SW1, J2, J3, J4, the regulator and the IP2326 module. See [Carrier PCB](#carrier-pcb) |
 | — | M2.5 brass heat-set inserts, 3.5 mm OD × 4 mm (×4) | Lid fixing. Measure yours — OD and length vary by supplier; `insert_d`/`insert_l` in the SCAD. |
 | — | M2.5 × 8 mm countersunk machine screws (×4) | Lid. Length covers lid + lip + insert. |
 | — | Neodymium discs, 6 × 2 mm (×4) | Bonded into the base. N52 if the holding test is marginal. |
@@ -153,11 +157,11 @@ Wire the IP2326 **BM** pad to the cell midpoint (centre wire of the balance lead
 
 With a fixed 6.0 V regulator, D1 + R1 would put the camera at ~5.7 V idle and ~5.2 V at 2 A. A PolaPulse sagging through its ~0.5 Ω lands in the same place at 2 A, but it starts from ~6.0–6.3 V rather than 5.7 V, so a fixed module has less headroom than the real thing.
 
-The fine-adjust regulator removes the question: dial the output so the **camera** sees ~6.0 V under load (roughly 6.6 V at the regulator, covering D1 and R1). Set the target from the measured floor voltage in [testing.md](testing.md).
+An adjustable regulator removes the question: set the output so the **camera** sees ~6.0 V under load (roughly 6.6 V at the regulator, covering D1 and R1). On the TPS630702 that means choosing the R2/R3 feedback divider; the 649 k / 100 k pair below gives 5.99 V and will need raising once the floor voltage is known. Set the target from the measured floor voltage in [testing.md](testing.md).
 
 Recovering headroom, in order of cost:
 
-1. Raise the regulator setpoint (free with a fine-adjust part).
+1. Raise the regulator setpoint (one resistor change in the FB divider).
 2. Drop R1 to 0.1 Ω — the regulator's own current limit already backstops a stall.
 3. Replace D1 with a P-channel MOSFET disconnect (tens of mΩ instead of ~0.4 V).
 
@@ -364,7 +368,9 @@ Specified part: **Mill-Max 7983-1-15-20-75-14-11-0**, from their high-current sm
 
 ---
 
-## Regulator — the Pololu is not the only option
+## Regulator — TPS630702 replaced the Pololu
+
+**Decision: U3 is a TPS630702 on the carrier PCB; the Pololu D30V33MALCMA stays in the BOM as the fallback (U3-alt).** The reasoning follows.
 
 The D30V33MALCMA is ~$35, and two of the things it is being bought for are questionable.
 
@@ -372,7 +378,7 @@ The D30V33MALCMA is ~$35, and two of the things it is being bought for are quest
 
 **It is a step-down.** As the pack falls toward 6.4 V the output sags, which the design currently tolerates because the camera runs down to ~5.2 V. A buck-boost would simply hold 6 V across the entire 2S range.
 
-### Alternative: TPS63070 on the carrier PCB
+### TPS63070 on the carrier PCB
 
 | | |
 |---|---|
@@ -386,7 +392,7 @@ Roughly **$0.90 against $35**, and technically better for this job: no sag at lo
 
 Three consequences:
 
-- **Footprint.** A QFN plus inductor and caps is perhaps 15 × 12 mm against the Pololu's 30.5 × 22.9 mm. The Pololu is the second-largest thing on the board and part of why the pack is 58 mm wide. **This could shrink the pack noticeably** — worth re-running the layout before committing.
+- **Footprint.** A QFN plus inductor and caps is perhaps 15 × 12 mm against the Pololu's 30.5 × 22.9 mm. The Pololu is the second-largest thing on the board and part of why the pack is 58 mm wide. It did: the layout re-run took Option B from 92 × 58 to 86 × 50 mm.
 - **2 A output is exactly our assumed peak.** Fine if the real stall current is at or below that, but [testing.md](testing.md) step 2 has not been run. If the motor pulls more, this part is undersized and something like the TPS55288 is the next step up. C1 absorbs inrush, which helps.
 - **Soft LVC, if wanted**, is a voltage supervisor pulling the EN pin low — a few cents, not $35.
 
@@ -413,7 +419,7 @@ R1 = 649 kΩ, R2 = 100 kΩ  (E96 1%)  →  5.99 V
 
 **Start-up current limit is ~1 A** until power good asserts — that is the soft-start mechanism.
 
-**⚠ Maximum output capacitance is 470 µF. C1 at 1000 µF violates it.** Recommended Operating Conditions give 15 µF min / 47 µF nom / **470 µF max** on VOUT for the nominal 1.5 µH inductor. C1 must come down — 2 × 220 µF polymer (440 µF) fits. For scale, TI's own reference design uses 66 µF; 440 µF is already generous by the chip's standards. Whether it is enough for the *motor* is what [testing.md](testing.md) step 2 answers.
+**⚠ Maximum output capacitance is 470 µF. The original 1000 µF C1 violated it.** Recommended Operating Conditions give 15 µF min / 47 µF nom / **470 µF max** on VOUT for the nominal 1.5 µH inductor. C1 must come down — 2 × 220 µF polymer (440 µF) fits. For scale, TI's own reference design uses 66 µF; 440 µF is already generous by the chip's standards. Whether it is enough for the *motor* is what [testing.md](testing.md) step 2 answers.
 
 **Variant table — and a correction.** All three differ less than I first said:
 
@@ -435,7 +441,7 @@ A TPS63060-based adjustable buck-boost module, ~$6, if a module is preferred ove
 
 ## Carrier PCB
 
-Everything in the output path — the pogo pins, D1, C1, R1 and SW1 — sits on one 2-layer carrier board, with the IP2326 and Pololu modules mounted to it. Only the cells and the 2S protection board stay off-board on wires.
+Everything in the output path — the pogo pins, D1, C1, R1 and SW1 — sits on one 2-layer carrier board, along with the TPS630702 regulator and the IP2326 module mounted to it. Only the cells and the 2S protection board stay off-board on wires.
 
 This started as loose modules joined by flying leads with the pins press-fitted into printed bosses. That was wrong for four reasons:
 
@@ -472,7 +478,7 @@ This started as loose modules joined by flying leads with the pins press-fitted 
 ## Mechanical
 
 - Enclosure: `sx70_power_pack.scad`, base + lid, print in **PETG**. Boards sit on the floor on foam tape; the divider is lower than the walls so leads pass over it.
-- All bay and cutout dimensions are parametric placeholders. **Caliper the actual parts** (especially USB-C height `usb_z`, switch position, and the Pololu envelope) before printing.
+- All bay and cutout dimensions are parametric placeholders. **Caliper the actual parts** (especially USB-C height `usb_z` and switch position) before printing.
 - **Option A shell:** set `battery_option = "aaa4"`. The battery bay grows to fit a 4-cell AAA holder and the electronics bay shrinks to the cap, resistor and switch.
 
 ### Lid fixing — brass heat-set inserts
@@ -559,6 +565,13 @@ Mirrors *Open questions* in the [README](../README.md). Ordered by what blocks w
 ---
 
 ## Changelog
+
+**Unreleased**
+
+- **U3 is now the TPS630702 buck-boost** on the carrier PCB, replacing the Pololu D30V33MALCMA (kept as U3-alt). Holds 6 V across the whole 2S range, ~$0.90 against ~$35, and shrank Option B from 92 × 58 to **86 × 50 mm**.
+- **C1 split into C1a/C1b, 2 × 220 µF** (440 µF): the TPS630702 allows at most 470 µF on VOUT. Option A keeps 1000 µF.
+- **F1 (1812L075 PPTC) added** after R1, as the backstop for force-charging a film-pack battery.
+- Carrier PCB placed in KiCad (`hardware/pcb/sx70_carrier.kicad_pcb`); DRC shows the lane is over-subscribed — see [pcb.md §3b](pcb.md#3b-kicad-project--and-what-drc-found).
 
 **v0.4 — 23 Sept 2026**
 
