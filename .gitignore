@@ -11,3 +11,9 @@ __pycache__/
 
 # Personal order records, vendor correspondence, account-tied data
 private/
+
+# Offline vendor manuals (local reference, not project files)
+offline-docs/
+
+# Python virtualenv
+.venv/
