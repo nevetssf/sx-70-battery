@@ -16,9 +16,7 @@ fab/     Fabrication drawing notes and the PCBWay submission package
 
 ## KiCad project
 
-**KiCad is currently in this machine's Trash — reinstall it first.**
-
-I deliberately have not hand-written the `.kicad_pcb` / `.kicad_pro` files. Those formats are version-specific and I have no KiCad here to validate against, so a generated file that fails to open would be worse than none. Create the project with **File → New Project** into `kicad/`, then apply the settings below. `kicad/sx70_lens_flex.kicad_dru` is provided and will load into Board Setup → Custom Rules.
+The `.kicad_pcb` / `.kicad_pro` files are deliberately not generated. Unlike the carrier PCB (built by `scripts/build_kicad_pcb.py`), this board is traced by hand from a scan, so there is nothing to script. Create the project with **File → New Project** into `kicad/`, then apply the settings below. `kicad/sx70_lens_flex.kicad_dru` is provided and will load into Board Setup → Custom Rules.
 
 ### Board Setup
 

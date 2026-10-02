@@ -23,7 +23,7 @@ A rechargeable, camera-mounted power supply for the folding Polaroid SX-70, repl
 
 Order numbers, the cost breakdown and vendor correspondence are kept out of the repo in a gitignored `private/` folder.
 
-**Not yet ordered** — [digikey-order.csv](hardware/bom/digikey-order.csv) is the consolidated list. Pogo pins, the 0.1 Ω shunt and the R1 spread are the ones that unblock bench work. The LiPo, IP2326, Pololu regulator, magnets and inserts come from other suppliers.
+**Not yet ordered** — [digikey-order.csv](hardware/bom/digikey-order.csv) is the consolidated list. Pogo pins, the 0.1 Ω shunt and the R1 spread are the ones that unblock bench work. The LiPo, IP2326, TPS630702 regulator (LCSC), magnets and inserts come from other suppliers.
 
 **Blocked on bench measurement** — all three in [testing.md](docs/testing.md), and everything downstream waits on them.
 
@@ -43,11 +43,11 @@ Four XTAR 1.5 V Li-ion AAA cells in series give a flat 6.0 V with no buck conver
 - Charging happens off-camera in an XTAR charger.
 - Energy: ~6.5 Wh.
 
-### Option B — 2S LiPo + USB-C charger + adjustable buck
+### Option B — 2S LiPo + USB-C charger + buck-boost regulator
 
-A small 2S LiPo, an IP2326 USB-C boost charger with cell balancing, and a Pololu fine-adjust regulator with an adjustable low-voltage cutoff.
+A small 2S LiPo, an IP2326 USB-C boost charger with cell balancing, and a TPS630702 buck-boost regulator on the carrier PCB, set to 6 V by a feedback divider. It holds 6 V across the whole pack range; the Pololu D30V33MALCMA fine-adjust module is the fallback ([why](docs/design.md#regulator--tps630702-replaced-the-pololu)).
 
-- Charges in place over USB-C; output dialled to whatever the camera actually needs.
+- Charges in place over USB-C; output set by the feedback divider to whatever the camera actually needs.
 - Ample peak current (30C on a 350 mAh pack is >10 A).
 - Energy: ~2.6 Wh, still several hundred exposures per charge.
 - Balancing is passive and only runs at the end of the charge, so let the taper finish instead of unplugging at "nearly full" — the protection board will not correct drift on its own ([details](docs/design.md#balancing)).
@@ -58,10 +58,10 @@ Option A:  4x AAA (6.0 V) --> SW --> C1 --> R1 --> pogo pins --> camera base-pla
 Option B:  USB-C --> IP2326 --> 2S protection --> 2S LiPo
                        |                            |
                      (BM balance)                   v
-                            SW (EN) --> D30V33MALCMA --> C1 --> D1 --> R1 --> pogo pins --> camera
+                            SW (EN) --> TPS630702 --> C1 --> D1 --> R1 --> F1 --> pogo pins --> camera
 ```
 
-C1 (1000 µF low-ESR) and R1 (0.22–0.47 Ω) appear in both: the capacitor for motor inrush, the resistor to emulate PolaPulse source impedance. D1 (SS34 Schottky) blocks backfeed when a battery-equipped film pack is loaded. **The pogo pins' own contact resistance (40 mΩ for the pair) counts against R1's budget** — measure and subtract.
+C1 and R1 (0.22–0.47 Ω) appear in both. C1 is 1000 µF low-ESR in Option A and 2 × 220 µF polymer in Option B, where the TPS630702 caps output capacitance at 470 µF. The capacitor is for motor inrush, the resistor to emulate PolaPulse source impedance. D1 (SS34 Schottky) blocks backfeed when a battery-equipped film pack is loaded; Option B adds F1, a resettable PTC fuse that ends a sustained force-charge fault ([details](docs/design.md#2-ptc-backstop--one-part)). **The pogo pins' own contact resistance (40 mΩ for the pair) counts against R1's budget** — measure and subtract.
 
 ## Repository layout
 
