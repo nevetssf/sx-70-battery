@@ -465,7 +465,7 @@ This started as loose modules joined by flying leads with the pins press-fitted 
 - Module mounting: headers, or castellated pads? Headers cost height, which the budget above does not have much of.
 - The two modules side by side still need 37.9 mm across a 36 mm bay, so they rotate 90° or stack. See the layout drawing.
 - Mounting-hole positions and outline are undefined until the layout is drawn. `pcb_posts` in the SCAD is empty until then.
-- PCBWay is the obvious fab — same account as the flex orders, and a 2-layer board this size is a rounding error against the $25.44 the flex PCB cost.
+- PCBWay is the obvious fab — same vendor as the flex orders, and a 2-layer board this size costs very little against the rest of the build.
 
 ---
 

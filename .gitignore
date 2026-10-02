@@ -8,3 +8,6 @@ __pycache__/
 *.kicad_prl
 *-backups/
 *.kicad_pcb-bak
+
+# Personal order records, vendor correspondence, account-tied data
+private/

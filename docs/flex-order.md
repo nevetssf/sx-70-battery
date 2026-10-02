@@ -33,27 +33,24 @@ Its published build:
 
 Fits both Model 1 and alpha-style motor connectors. The designer's warning is worth repeating: **do not make hard creased folds** when bending it around the body, or the copper breaks.
 
-**Ordered:** PCBWay order **YF1811100**, product **W1041470AS3P6**, file `SX70_Flex_2025-12-09.zip` (Cundari's published Gerbers). Passed review 16 Sept 2026, paid 18 Sept, shipped 21 Sept 2026. **Motor control chip replacement — ordered.** PCBWay order **YH1814072**, placed 22 Sept 2026 (23 Sept 12:03 PCBWay time, GMT+8):
+**Both parts ordered from PCBWay, Sept 2026.** The body flex shipped; the motor control chips were quoted at an 18–20 day build.
 
 | | |
 |---|---|
-| Line items | `W1041470AS3P8` — bare PCB, file `W832028AS2Y7_Gerber_PCB1_2026-04-01 (2).zip`<br>`T-3P9W1041470A (W1041470AS3P8)` — assembly |
-| Quantity | **10 assembled boards** |
-| Cost | **$134.79** — boards $25.44, components $21.35, assembly $88.00 |
-| Quoted build time | 18–20 days |
-| Rep | service12@pcbway.com (quote came via service33 / Ivy Yang) |
+| Body flex | Cundari's published Gerbers, built to the share page's defaults |
+| Motor control chip | **10 assembled boards, ~$135 the lot** — roughly a third boards, a third components, a third assembly |
 
-The earlier 5-unit quote (`T-3P5W1041470A`, $71.03) is superseded.
+> Order numbers, exact prices, dates and vendor correspondence live in the gitignored `private/` folder, not here. A reader reproducing this needs the part sources and the ballpark, not the buyer's account details.
 
-⚠️ **The build window overlaps the Chinese holidays.** The quote email linked PCBWay's *Holiday Schedule of Mid-Autumn Festival & National Day 2026*, and both fall inside an 18–20 day build starting 23 Sept. Check that schedule before assuming a mid-October delivery.
+⚠️ **The build window overlaps the Chinese holidays.** The quote email linked PCBWay's *Holiday Schedule of Mid-Autumn Festival & National Day 2026*, and both fall inside an 18–20 day build placed in late September. Check that schedule before assuming the quoted date.
 
-The quote carried a BOM spreadsheet attachment (`Quotation T-3P9W1041470A-10units-BOM_...xls`) — that is the only record of which components PCBWay is actually fitting. Worth saving into the repo alongside the board files.
+**Keep the PCBA quotation BOM.** It is the only record of which components PCBWay actually fits — which matters for a replacement for an obsolete SN28648P, where substitutions change the part.
 
 **Pins are a separate order.** The board is 10 × 10 mm, 1.0 mm thick, with SMT parts on the board and **through-hole pins into the flex** — 5 pins, the DIP-8 pattern with 3 unpopulated, matching the original MCM's 5 populated legs. The [GitHub BOM](https://github.com/fotocundari/SX70-Motor-Control-Chip) specifies making them from the legs of **Stackpole JW60ZT0R00** tin-plated 0 Ω through-hole jumper resistors (22 AWG), stocked by Digi-Key and Mouser.
 
-Two cautions: the PCBWay page's wording — "requires adding jumper wires to replace pins" — contradicts the GitHub BOM, which is the more specific and more recent source; and **check the PCBA quotation BOM before ordering pins separately**, since the $21.35 component line may already cover them.
+Two cautions: the PCBWay page's wording — "requires adding jumper wires to replace pins" — contradicts the GitHub BOM, which is the more specific and more recent source; and **check the PCBA quotation BOM before ordering pins separately**, since the quoted component line may already cover them.
 
-**The build parameters were not captured anywhere.** PCBWay's notification emails list only the product number and filename, so the material, copper weight, thickness and finish for YF1811100 exist only on the order management page. Log in and record them in the table below before the order ages out — without them the build is not reproducible.
+**Record the as-built fab parameters at the time of ordering.** PCBWay's notification emails carry only the product number and filename, so material, copper weight, thickness and finish exist solely on the order management page — and the page ages out. Without them the build is not reproducible.
 
 | Parameter | As built (fill from order page) |
 |---|---|
@@ -166,7 +163,7 @@ Multilayer adhesiveless stackups use 13 µm "pure gum" spacers on inner layers.
 
 - [Flex / rigid-flex capabilities](https://www.pcbway.com/fpc-rigid-flex-pcb.html) — layer counts, copper weights, surface finishes
 - [FPC stackup and materials](https://www.pcbway.com/pcb_prototype/Stack_up_for_FPC.html) — base PI thicknesses, coverlay, adhesive options
-- Order management page — the **only** place the as-built parameters for YF1811100 exist
+- Order management page — the **only** place a given order's as-built parameters exist
 
 **Other sources**
 

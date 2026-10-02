@@ -18,8 +18,10 @@ A rechargeable, camera-mounted power supply for the folding Polaroid SX-70, repl
 
 **Ordered** — replacement flex parts, in case a flex fails (see [flex-order.md](docs/flex-order.md))
 
-- Body flex, PCBWay **YF1811100** — shipped 21 Sept 2026
-- Motor control chips, PCBWay **YH1814072** — 10 assembled, $134.79, placed 22 Sept, 18–20 day build
+- **Body flex** — Cundari's replacement, ordered from PCBWay, shipped Sept 2026
+- **Motor control chips** — 10 assembled boards from PCBWay, ~$135 the lot, Sept 2026, 18–20 day quoted build
+
+Order numbers, the cost breakdown and vendor correspondence are kept out of the repo in a gitignored `private/` folder.
 
 **Not yet ordered** — [digikey-order.csv](hardware/bom/digikey-order.csv) is the consolidated list. Pogo pins, the 0.1 Ω shunt and the R1 spread are the ones that unblock bench work. The LiPo, IP2326, Pololu regulator, magnets and inserts come from other suppliers.
 
